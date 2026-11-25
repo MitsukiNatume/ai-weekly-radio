@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head><meta charset="utf-8"><title>ローカルAI週間まとめ</title></head>
+<body>
+<h1>ローカルAI週間まとめ</h1>
+<p>週1回のローカルAIニュース（モデル・エンジン・ハーネス）の週間まとめです。毎週土曜09:00に新しい回を公開します。</p>
+<ul id="episodes"></ul>
+<script>
+fetch("episodes.json").then(r => r.json()).then(list => {
+  const ul = document.getElementById("episodes");
+  for (const e of list) {
+    const li = document.createElement("li");
+    li.innerHTML = e.date + " " + e.title + " ";
+    const a = document.createElement("a");
+    a.href = e.audio; a.textContent = "音声";
+    li.appendChild(a);
+    li.appendChild(document.createTextNode(" "));
+    const s = document.createElement("a");
+    s.href = e.script; s.textContent = "台本";
+    li.appendChild(s);
+    ul.appendChild(li);
+  }
+});
+</script>
+</body>
+</html>
